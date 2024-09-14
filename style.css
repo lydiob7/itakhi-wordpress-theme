@@ -1,0 +1,17 @@
+/*
+Theme Name: Itakhi Theme
+Theme URI: https://itakhidigital.com/
+Author: Itakhi Digital Atelier
+Author URI: https://itakhidigital.com
+Description: Itakhi Theme.
+Requires at least: 6.4
+Tested up to: 6.6
+Requires PHP: 7.0
+Version: 0.1
+Text Domain: itakhitheme
+Tags: 
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
