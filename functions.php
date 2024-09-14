@@ -23,6 +23,7 @@ if ( ! defined( 'ITAKHI_BUILD_PATH' ) ) {
 }
 
 require_once ITAKHI_DIR_PATH . '/includes/helpers/autoloader.php';
+require_once ITAKHI_DIR_PATH . '/includes/helpers/template-tags.php';
 
 function itakhi_get_theme_instance() {
 	\ITAKHI\Includes\ITAKHI_THEME::get_instance();

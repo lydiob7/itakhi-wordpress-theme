@@ -22,8 +22,8 @@ if ( function_exists( 'wp_body_open' ) ) {
 }
 ?>
 
-<div id="page" class="site">
+<div id="page" class="flex flex-col min-h-screen">
 	<header id="masthead" class="site-header" role="banner">
 		<?php get_template_part( 'template-parts/header/navigation' ); ?>
 	</header>
-	<div id="content" class="site-content">
+	<div id="content" class="flex-1">

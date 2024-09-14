@@ -6,9 +6,10 @@
  */
 ?>
 
+</div>
 
-<footer id="main-footer">
-	
+<footer id="main-footer" class="container py-8">
+	Footer
 </footer>
 <?php
 wp_footer();
