@@ -8,8 +8,8 @@ Main Itakhi Theme Single Post template file.
 get_header();
 ?>
 
-<div id="main-container">
-    <main id="main" class="small-container my-8" role="main">
+<div id="main-container" class="container grid gap-8 md:grid-cols-[2fr,1fr] my-8">
+    <main id="main" class="" role="main">
         <?php if (is_home() && !is_front_page()) : ?>
 
             <header class="mb-16">
@@ -24,11 +24,24 @@ get_header();
             get_template_part('template-parts/content');
         endwhile;
 
-        previous_post_link();
-        next_post_link();
-    
         ?>
+        <div class="flex justify-between items-center gap-4">
+            <div class="prev-link">
+                <?php
+                previous_post_link();
+                ?>
+            </div>
+            <div class="next-link">
+                <?php
+                next_post_link();
+                ?>
+            </div>
+        </div>
     </main>
+
+    <div>
+        <?php get_sidebar(); ?>
+    </div>
 </div>
 
 

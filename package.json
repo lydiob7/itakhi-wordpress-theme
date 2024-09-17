@@ -1,17 +1,29 @@
 {
-    "name": "itakhi",
+    "name": "itakhitheme",
     "version": "1.0.0",
-    "description": "",
+    "description": "Itakhi's WordPress Theme",
     "main": "index.js",
     "scripts": {
+        "dev": "vite && npx tailwindcss -i ./assets/src/style.css -o ./assets/src/output.css --watch",
+        "build": "npx tailwindcss -i ./assets/src/style.css -o ./assets/src/output.css && vite build",
+        "preview": "vite preview",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "buildcss": "npx tailwindcss -i ./style.css -o ./assets/build/css/output.css",
-        "watchcss": "npx tailwindcss -i ./style.css -o ./assets/build/css/output.css --watch"
+        "buildcss": "npx tailwindcss -i ./assets/src/style.css -o ./assets/src/output.css",
+        "watchcss": "npx tailwindcss -i ./assets/src/style.css -o ./assets/src/output.css --watch"
     },
-    "keywords": [],
-    "author": "",
+    "keywords": [
+        "wordpress",
+        "itakhi",
+        "themes"
+    ],
+    "author": "Itakhi Digital Atelier",
     "license": "ISC",
     "devDependencies": {
-        "tailwindcss": "^3.4.11"
+        "tailwindcss": "^3.4.11",
+        "typescript": "^5.6.2",
+        "vite": "^5.4.6"
+    },
+    "dependencies": {
+        "glob": "^11.0.0"
     }
 }

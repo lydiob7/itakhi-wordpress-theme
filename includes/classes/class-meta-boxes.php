@@ -5,9 +5,9 @@
  * @package Itakhi
  */
 
-namespace Itakhi\Includes;
+namespace ITAKHI\Includes;
 
-use Itakhi\Includes\Traits\Singleton;
+use ITAKHI\Includes\Traits\Singleton;
 
 class Meta_Boxes {
 	use Singleton;

@@ -75,7 +75,7 @@ function itakhi_the_excerpt($trim_character_count = 0) {
 
 function itakhi_excerpt_more( $more = '' ) {
     if ( !is_single() ) {
-        $more = sprintf( '<button class="block mt-2 itakhi-button"><a href="%1$s" class="itakhi-read-more">%2$s</a></button>',
+        $more = sprintf( '<a href="%1$s" class="itakhi-read-more"><button class="block mt-2 itakhi-button">%2$s</button></a>',
             get_permalink( get_the_ID() ),
             __('Read more', 'itakhitheme')
         );
