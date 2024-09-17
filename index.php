@@ -40,7 +40,10 @@ get_header();
 
         get_template_part('template-parts/no-content');
         
-        endif; ?>
+        endif; 
+        
+        itakhi_pagination();
+        ?>
     </main>
 </div>
 

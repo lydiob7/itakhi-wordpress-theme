@@ -17,6 +17,7 @@ class ITAKHI_THEME {
 		// Load class.
 		Assets::get_instance();
 		Menus::get_instance();
+		Meta_Boxes::get_instance();
 
 		$this->setup_hooks();
 	}
@@ -37,6 +38,11 @@ class ITAKHI_THEME {
 	 */
 	public function setup_theme() {
 		add_theme_support( 'title-tag' );
+
+		/*
+		** Trim excerpt length
+		*/
+		add_filter( 'excerpt_length', [$this, 'itakhi_custom_excerpt_length'], 999 );
 
 		/**
 		 * @see Adding custom logo
@@ -76,7 +82,7 @@ class ITAKHI_THEME {
 
 		add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
 
-		add_image_size( 'featured-thumbnail', 350, 233, true );
+		add_image_size( 'featured-thumbnail', 390, 292.5, true );
 
 		add_theme_support( 'customize-selective-refresh-widgets' );
 
@@ -125,6 +131,10 @@ class ITAKHI_THEME {
 		if ( ! isset( $content_width ) ) {
 			$content_width = 1240;
 		}
+	}
+
+	function itakhi_custom_excerpt_length( $length ) {
+		return 22;
 	}
 
 }

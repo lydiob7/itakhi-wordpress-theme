@@ -1,6 +1,6 @@
 <?php
 
-function get_the_post_custom_thumbnail( $post_id, $size = 'featured-large', $additional_attributes = []) {
+function get_the_post_custom_thumbnail( $post_id, $size = 'featured-thumbnail', $additional_attributes = []) {
     $custom_thumbnail = '';
 
     if ($post_id === null) {
@@ -25,6 +25,80 @@ function get_the_post_custom_thumbnail( $post_id, $size = 'featured-large', $add
     return $custom_thumbnail;
 }
 
-function the_post_custom_thumbnail( $post_id, $size = 'featured-large', $additional_attributes = [] ) {
+function the_post_custom_thumbnail( $post_id, $size = 'featured-thumbnail', $additional_attributes = [] ) {
     echo get_the_post_custom_thumbnail( $post_id, $size, $additional_attributes );
+}
+
+function itakhi_posted_on() {
+    $time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+
+    if ( get_the_time('U') !== get_the_modified_time('U') ) {
+        $time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+    }
+
+    $time_string = sprintf( $time_string,
+        esc_attr( get_the_date( DATE_W3C ) ),
+        esc_attr( get_the_date() ),
+        esc_attr( get_the_modified_date( DATE_W3C ) ),
+        esc_attr( get_the_modified_date() )
+    );
+
+    $posted_on = sprintf(
+        esc_html_x( 'Posted on %s', 'post date', 'itakhitheme' ),
+        '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
+    );
+
+    echo '<span class="posted-on text-gray-400 text-xs">' . $posted_on . '</span>';
+}
+
+function itakhi_posted_by() {
+    $by_link = sprintf(
+        esc_html_x( 'by %s', 'post author', 'itakhitheme' ),
+        '<span class="author"><a href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+    );
+
+    echo '<span class="byline text-gray-400 text-xs">' . $by_link . '</span>';
+}
+
+function itakhi_the_excerpt($trim_character_count = 0) {
+    if (!has_excerpt() || $trim_character_count === 0) {
+        the_excerpt();
+        return;
+    }
+
+    $excerpt = wp_strip_all_tags( get_the_excerpt() );
+    $excerpt = substr( $excerpt, 0, $trim_character_count );
+    $excerpt = substr( $excerpt, 0, strrpos( $excerpt, ' ' ) );
+
+    echo $excerpt . '[...]';
+}
+
+function itakhi_excerpt_more( $more = '' ) {
+    if ( !is_single() ) {
+        $more = sprintf( '<button class="block mt-2 itakhi-button"><a href="%1$s" class="itakhi-read-more">%2$s</a></button>',
+            get_permalink( get_the_ID() ),
+            __('Read more', 'itakhitheme')
+        );
+
+        return $more;
+    }
+}
+
+function itakhi_pagination() {
+    $allowed_tags = [
+        'span' => [
+            'class' => []
+        ],
+        'a' => [
+            'class' => [],
+            'href' => []
+        ]
+    ];
+
+    $args = [
+        'before_page_number' => '<span class="page-number border border-gray-500 text-gray-500 mb-2 px-2 py-1 rounded-sm">',
+        'after_page_number' => '</span>'
+    ];
+
+   printf( '<nav class="itakhi-pagination">%s</nav', wp_kses( paginate_links( $args ), $allowed_tags ) );
 }
