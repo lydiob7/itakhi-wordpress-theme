@@ -6,6 +6,10 @@
  */
 
 
+if ( ! defined( 'WP_HOTRELOAD' ) ) {
+	define( 'WP_HOTRELOAD', true );
+}
+
 if ( ! defined( 'ITAKHI_VERSION' ) ) {
 	define( 'ITAKHI_VERSION', time() );
 }
@@ -47,8 +51,15 @@ function itakhi_get_theme_instance() {
 
 itakhi_get_theme_instance();
 
-function test_shortcode() {
-	echo "Hello";
+function rss_feed() {
+	$rss = fetch_feed( 'https://www.itakhidigital.com/feed/' );
+	if (! is_wp_error( $rss )) {
+		$maxitems = $rss->get_item_quantity( 5 );
+		$rss_items = $rss->get_items( 0, $maxitems );
+		foreach ( $rss_items as $item ) {
+			get_template_part( 'template-parts/components/blog/rss-feed-blog-post-card', null, [ 'item' => $item ] );
+		}
+	}
 }
 
-add_shortcode('test_shortcode', 'test_shortcode');
+add_shortcode('rss_feed', 'rss_feed');

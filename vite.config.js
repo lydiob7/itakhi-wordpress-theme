@@ -1,11 +1,9 @@
 import path from "path";
-import { defineConfig } from "vite";
-import copy from "./.vite/copy";
 
 const ROOT = path.resolve("../../../");
 const BASE = __dirname.replace(ROOT, "");
 
-export default defineConfig({
+export default {
     base: process.env.NODE_ENV === "production" ? `${BASE}/dist/` : BASE,
     build: {
         manifest: "manifest.json",
@@ -13,7 +11,7 @@ export default defineConfig({
         outDir: `dist`,
         emptyOutDir: true,
         rollupOptions: {
-            input: ["assets/src/main.ts", "assets/src/output.css"],
+            input: ["assets/src/js/main.ts", "assets/src/css/output.css", "assets/src/css/editor.css"],
             output: {
                 entryFileNames: "[hash].js",
                 assetFileNames: "[hash].[ext]",
@@ -22,13 +20,6 @@ export default defineConfig({
         }
     },
     plugins: [
-        copy({
-            targets: [
-                {
-                    src: `assets/images/**/*.{png,jpg,jpeg,svg,webp}`
-                }
-            ]
-        }),
         {
             name: "php",
             handleHotUpdate({ file, server }) {
@@ -38,4 +29,4 @@ export default defineConfig({
             }
         }
     ]
-});
+};

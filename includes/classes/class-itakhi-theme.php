@@ -7,15 +7,19 @@
 
 namespace ITAKHI\Includes;
 
+use ITAKHI\Includes\Traits\Resolver;
 use ITAKHI\Includes\Traits\Singleton;
 
 class ITAKHI_THEME {
+	use Resolver;
 	use Singleton;
 
 	protected function __construct() {
+		$this->load();
 
 		// Load class.
 		Assets::get_instance();
+		Block_Patterns::get_instance();
 		Clock_Widget::get_instance();
 		Menus::get_instance();
 		Meta_Boxes::get_instance();
@@ -114,6 +118,9 @@ class ITAKHI_THEME {
 		 * @see https://developer.wordpress.org/block-editor/developers/themes/theme-support/#editor-styles
 		 */
 		add_theme_support( 'editor-styles' );
+
+		add_editor_style( $this->resolvePath('src/css/editor.css') );
+
 
 		// Remove the core block patterns
 		remove_theme_support( 'core-block-patterns' );

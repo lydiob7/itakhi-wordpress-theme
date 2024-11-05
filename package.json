@@ -4,12 +4,12 @@
     "description": "Itakhi's WordPress Theme",
     "main": "index.js",
     "scripts": {
-        "dev": "vite && npx tailwindcss -i ./assets/src/style.css -o ./assets/src/output.css --watch",
-        "build": "npx tailwindcss -i ./assets/src/style.css -o ./assets/src/output.css && vite build",
+        "dev": "vite && npx tailwindcss -i ./assets/src/css/style.css -o ./assets/src/css/output.css --watch",
+        "build": "npx tailwindcss -i ./assets/src/css/style.css -o ./assets/src/css/output.css && vite build",
         "preview": "vite preview",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "buildcss": "npx tailwindcss -i ./assets/src/style.css -o ./assets/src/output.css",
-        "watchcss": "npx tailwindcss -i ./assets/src/style.css -o ./assets/src/output.css --watch"
+        "buildcss": "npx tailwindcss -i ./assets/src/css/style.css -o ./assets/src/css/output.css",
+        "watchcss": "npx tailwindcss -i ./assets/src/css/style.css -o ./assets/src/css/output.css --watch"
     },
     "keywords": [
         "wordpress",
@@ -23,7 +23,5 @@
         "typescript": "^5.6.2",
         "vite": "^5.4.6"
     },
-    "dependencies": {
-        "glob": "^11.0.0"
-    }
+    "dependencies": {}
 }

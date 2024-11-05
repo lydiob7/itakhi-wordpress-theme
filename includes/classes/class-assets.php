@@ -31,13 +31,13 @@ class Assets {
 	}
 
 	public function register_styles() {
-		wp_enqueue_style('dev-css', ITAKHI_ASSETS_URI . '/src/output.css', [], false, 'all');
-		// $this->enqueue('src/output.css', 'style');
+		wp_enqueue_style('dev-css', ITAKHI_ASSETS_URI . '/src/css/output.css', [], false, 'all');
+		// $this->enqueue('src/css/output.css', 'style');
 		wp_enqueue_style('main-style-css', ITAKHI_DIR_URI . '/style.css', [], false, 'all');
 	}
 
 	public function register_scripts() {
-		$this->enqueue('src/main.ts', 'script', ['jquery']);
+		$this->enqueue('src/js/main.ts', 'script', ['jquery']);
 	}
 
 }

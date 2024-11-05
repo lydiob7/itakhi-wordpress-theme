@@ -41,6 +41,17 @@ trait Resolver
 
         return $url;
     }
+    
+    public function resolvePath(string $path): string
+    {
+        $url = '';
+
+        if ($this->has($path)) {
+            $url =  "/dist/{$this->find($path)['file']}";
+        }
+
+        return $url;
+    }
 
     public function enqueue(string $path, string $type, $deps = []): void
     {
